@@ -8,12 +8,12 @@ const serviceConfig = require('../config/api-config'),
    environment = require('../config/environment');
    eventList=[]
    function triggerReadAPI(req,cachedUserInfo) {
-        logger.debug('inside triggerReadAPI method'+JSON.stringify(cachedUserInfo));
+        logger.debug('inside triggerReadAPI method');
         var data={};
         return new Promise(function(resolve,reject){
             let config = {
                 headers: {
-                    'authorization': 'Bearer V9WxVwHha8pFPNCMz2PK',
+                    'authorization': environment.config.authorization,
                     'userid': cachedUserInfo.userId
                 }
               }
@@ -33,12 +33,12 @@ const serviceConfig = require('../config/api-config'),
         });
    }
    function triggerDeliverAPI(req,cachedUserInfo) {
-        logger.debug('inside triggerDeliverAPI method'+JSON.stringify(cachedUserInfo));
+        logger.debug('inside triggerDeliverAPI method');
         var data={};
         return new Promise(function(resolve,reject){
             let config = {
                 headers: {
-                    'authorization': 'Bearer V9WxVwHha8pFPNCMz2PK',
+                    'authorization': environment.config.authorization,
                     'userid': cachedUserInfo.userId
                 }
             }
@@ -58,6 +58,7 @@ const serviceConfig = require('../config/api-config'),
         });
     }
     function triggerSpentTimeAPI(req,cachedUserInfo) {
+        logger.debug('inside triggerSpentTimeAPI method');
         var eventData = {
             "eventType": req.query.eventType,
             "timestamp": req.query.timestamp,
@@ -75,7 +76,7 @@ const serviceConfig = require('../config/api-config'),
         return new Promise(function(resolve,reject){
             let config = {
                 headers: {
-                    'authorization': 'Bearer V9WxVwHha8pFPNCMz2PK',
+                    'authorization': environment.config.authorization,
                     'userid': cachedUserInfo.userId
                 }
             }

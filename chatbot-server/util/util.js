@@ -3,6 +3,7 @@ var path = require('path'),
  apiConfig = require(rootPath + '/config/api-config.js'),
  exception = require(rootPath + '/config/exception.json'),
  logger = require('./log-util'),
+ environment = require('../config/environment'),
  copiedUserResponse=null;
 module.exports = {
     /**
@@ -35,7 +36,7 @@ module.exports = {
                 break;
             case 'privateChannel':
                 config = apiConfig.privateChannelAPI;
-                config.url = 'https://insentrecruit.api.insent.ai/user/channels/' + requestObject.channelId;
+                config.url = environment.config.url+'/user/channels/' + requestObject.channelId;
                 config.headers.userid = requestObject.userId;
                 break;
             }
