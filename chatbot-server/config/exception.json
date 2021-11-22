@@ -1,0 +1,22 @@
+{
+    "Create_Request_Exception":{
+        "CODE":"001",
+        "MSG":"Request creation failed"
+    },
+    "Get_User_General_Exception":{
+        "CODE":"002",
+        "MSG":"Exception occured while calling getUser API"
+    },
+    "Private_Channel_General_Exception":{
+        "CODE":"004",
+        "MSG":"Exception occured while calling privateChannel API"
+    },
+    "Visitor_Auth_General_Exception":{
+        "CODE":"005",
+        "MSG":"Exception occured while calling visitorAuth API"
+    },
+    "Read_General_Exception":{
+        "CODE":"006",
+        "MSG":"Exception occured while calling read API"
+    }
+}
