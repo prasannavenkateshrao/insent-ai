@@ -9,6 +9,10 @@ const path = require("path");
  */
 
 const app = express();
+const cors = require('cors');
+app.use(cors({
+  origin: '*'
+}));
 const port = process.env.PORT || "8000";
 
 const server = http.Server(app);
