@@ -1,0 +1,98 @@
+<div id="insent-chat-widget" class="bot-position">
+  
+    <div id="insent-app-container" class="sc-iGPElx ggQLgg" style="width:30%">
+      <div id="app-container" *ngIf="showlauncher">
+        <div id="popup-message-detail" height="unset" class="sc-bHwgHz ceLvPf">
+           <div id="greeting-message" class="sc-krDsej dLyHeK">
+              <div id="popup-content" class="sc-itybZL devavp">{{response.popupMessage}}<br></div>
+           </div>
+           <div id="launcher-icon-container" class="sc-qrIAp iBDkAN">
+               <img id="popup-card-close-icon" src="/assets/close.ec75d473.svg" (click)="closeMessageTray()" class="closeIcon">
+           </div>
+        </div>
+     <div id="popup-card-close"><button (click)="displayCard()" class="button"><img src="{{response.widgetImage}}" alt="chat-bot" class="center"></button></div>
+    </div>
+     
+        <div id="insent-card-container" class="sc-bdVaJa erukaN" *ngIf="showcard" >
+          <div data-testid="insent-test-card-close" id="insent-card-close" class="sc-bwzfXH ijWguk"><img src="/assets/close.ec75d473.svg" class="sc-htpNat gowZFB" (click)="displayLauncher()"></div>
+          <div class="sc-fAjcbJ hPDIXR">
+             <div class="sc-kvZOFW ibEosN"><img src="/assets/back.12014757.svg" alt="back button" class="sc-hmzhuo jxDzlW"></div>
+             <div class="sc-jzgbtB cVhMoG">
+                <div class=" sb-avatar sb-avatar--src" style="display: inline-block; vertical-align: middle; width: 40px; height: 40px; border-radius: 100%; font-family: Helvetica, Arial, sans-serif;"><img class=" sb-avatar__image" width="40px" height="40px" src="https://staging-uploads.insent.ai/insentrecruit/logo-insentrecruit-1636924693820?1636924693897" alt="Insent" title="Insent" style="max-width: 100%; width: 30px; height: 30px; border-radius: 100%;"></div>
+             </div>
+             <div class="sc-uJMKN jUoPqL">
+                <div class="sc-fYxtnH dIsati">
+                   <div data-toggle="tooltip" title="Insent" class="sc-bbmXgH fhfEwU">{{response.botCompanyName}}</div>
+                </div>
+                <div class="sc-jnlKLf jdTKPj">{{response.botName}}</div>
+             </div>
+          </div>
+          <div id="insent-conversation-detail-container" class="sc-TOsTZ buBXZv">
+             <div id="insent-conversation-detail" height="calc(100vh - 180px)" class="sc-kgAjT jWSeIN">
+                <div id="insent-conversation-wrapper" class="sc-cJSrbW cgsisV">
+                   <div id="insent-conversation-list" class="sc-ksYbfQ dBNTzR">
+                      <div>
+                         <div>
+                            <div id="insent-message-container-message-wrapper" type="text" class="sc-eLExRp eiOyjC">
+                               <div id="insent-message-container-message-wrapper" class="sc-cbkKFq fQprDO">
+                                  <div id="insent-text-message-message-wrapper" class="sc-bZQynM csZtoy">
+                                     <div id="insent-text-message-message-wrapper-client-message" class="sc-gzVnrw gKCUlS">@{{response.botName}}</div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                      <div id="inputDiv" style="display:none;">
+                         <div>
+                            <div id="insent-message-container-message-wrapper" type="input" class="sc-eLExRp eiOyjC">
+                               <div id="insent-message-container-sender-image-wrapper" class="sc-lkqHmb eUBqDy">
+                                  <div class=" sb-avatar sb-avatar--src" style="display: inline-block; vertical-align: middle; width: 30px; height: 30px; border-radius: 100%; font-family: Helvetica, Arial, sans-serif;"><img class=" sb-avatar__image" width="30px" height="30px" src="https://staging-uploads.insent.ai/insentrecruit/logo-insentrecruit-1636924693820?1636924693897" alt="InsentBot" title="InsentBot" style="max-width: 100%; width: 30px; height: 30px; border-radius: 100%;"></div>
+                               </div>
+                               <div id="insent-message-container-message-wrapper" class="sc-cbkKFq gJHTuw">
+                                <div id="insent-input-message-input-box" class="sc-gqjmRU dPFCZU inputMessage">
+                                    <div id="insent-input-message-input-box-body" class="sc-VigVT hJVxn">
+                                       <div id="insent-input-message-input-box-body-label" class="sc-jTzLTM eGzGoR"></div>
+                                       <div id="insent-input-message-input-box-body-input-validate" class="sc-kAzzGY jrQJCi">
+                                           <div id="insent-input-message-input-box-body-input-form" class="sc-cSHVUG cAPxsX inputTextBox">
+                                             <label for="plain" class="sc-fjdhpX jneefL" id="textLabel"></label><input name="plain" type="text" autocomplete="off" minlength="1" maxlength="50" class="sc-jzJRlG dJECDS textWidth" (keyup)="clearOtherData()" (keyup.enter)="dataEntered()">
+                                             <button class="sc-chPdSV dxXLtj" (click)="dataEntered()" [disabled]="!valueEntered"><svg id="insent-input-box-bode-input-submit-icon" class="sc-kgoBCf ekNPaO"><path d="M1.21644 0.0924218C0.664925 -0.185081 0 0.195829 0 0.788806V4.00309V5.57896V5.99101C0 6.44843 0.360638 6.83313 0.838516 6.88558L7.65962 7.63393C8.10814 7.68312 8.10814 8.30248 7.65962 8.3517L0.838516 9.10005C0.360638 9.15247 0 9.53721 0 9.99462V12.0076V13.5834V15.328C0 15.7445 0.354561 16.0346 0.789781 15.9871C1.22599 15.9394 -0.465961 16.7401 15.5278 8.6892C16.1147 8.39365 16.115 7.59199 15.5278 7.2964L1.21644 0.0924218Z" fill="#9013fe"></path></svg></button>
+                                            </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                      <div id="bot-message-container" style="display:none;">
+                        <div>
+                           <div id="insent-message-container-message-wrapper" type="text" class="sc-eLExRp eiOyjC">
+                              <div id="insent-message-container-sender-image-wrapper" class="sc-lkqHmb eUBqDy">
+                                 <div class=" sb-avatar sb-avatar--src" style="display: inline-block; vertical-align: middle; width: 30px; height: 30px; border-radius: 100%; font-family: Helvetica, Arial, sans-serif;"><img class=" sb-avatar__image" width="30px" height="30px" src="https://staging-uploads.insent.ai/insentrecruit/logo-insentrecruit-1636924693820?1636924693897" alt="InsentBot" title="InsentBot" style="max-width: 100%; width: 30px; height: 30px; border-radius: 100%;"></div>
+                              </div>
+                              <div id="insent-message-container-message-wrapper" class="sc-cbkKFq ljGXlE">
+                                 <div id="insent-text-message-message-wrapper" class="sc-bZQynM csZtoy">
+                                    <div class="sc-htoDjs kayjXh" id="messageText">Thank you for using our service !<br></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                      <div></div>
+                   </div>
+                </div>
+             </div>
+             <div id="insent-message-input-message-input-wrapper" class="sc-eilVRo eIqfAa">
+                <button id="insent-message-input-buttons-wrapper" class="sc-emmjRN bUrjKn">
+                <button id="insent-message-input-bot-icon" class="sc-cpmLhU cxcgsh">
+                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.5699 2.43462C12.9111 1.77664 11.524 1.04884 10.9281 0.752266C10.797 0.687049 10.6462 0.783104 10.6462 0.92948V2.61823C10.6462 2.79542 10.74 2.95925 10.8903 3.05313C11.2149 3.25591 11.7819 3.62743 12.0764 3.92272C14.2132 6.06052 14.2132 9.53633 12.0764 11.6731C9.93971 13.8066 6.46605 13.8066 4.3261 11.6731C2.19152 9.53419 2.19152 6.06052 4.3261 3.92272C4.33146 3.91629 4.34862 3.90556 4.35612 3.89592L5.4534 4.98948C5.51651 5.05237 5.62415 5.00756 5.62399 4.91846L5.61731 1.34529C5.6171 1.23509 5.52778 1.14581 5.41757 1.14567L1.84695 1.1409C1.75779 1.14078 1.71306 1.24856 1.7761 1.31161L2.86588 2.40138C2.85837 2.41425 2.84658 2.42711 2.83693 2.43462C-0.125331 5.39581 -0.125331 10.2 2.83693 13.1612C5.80348 16.1256 10.6044 16.1256 13.5699 13.1612C16.53 10.2 16.5332 5.39581 13.5699 2.43462Z" fill="#ffffff"></path>
+                   </svg>
+                </button>
+                <span>Restart conversation</span></button>
+             </div>
+          </div>
+       </div>
+      
+    </div>
+  </div>  
