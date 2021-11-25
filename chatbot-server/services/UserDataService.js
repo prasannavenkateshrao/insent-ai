@@ -80,6 +80,7 @@ const serviceConfig = require('../config/api-config'),
 }
 module.exports = {
 	getUserDetails: function(req) {
+        console.log('service wired');
         return triggerGetUserAPI(req);
 	},
     _: {
