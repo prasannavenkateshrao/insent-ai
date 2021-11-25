@@ -53,9 +53,9 @@ const serviceConfig = require('../config/api-config'),
     }
  }
  /**
- * Function responsible for processing the response from account lite and filtering the accounts
- * based on Corporate actions requirements and returning the list of accounts that has to be
- * passed to events search API call
+ * Function responsible for processing the response from visitor auth API, 
+ * this information is aggregated and sent to Angular for implementing
+ * websocket connection and authentication
  */
   function getProcessedResponse(response) {
 	var aggregatedConversationData = {

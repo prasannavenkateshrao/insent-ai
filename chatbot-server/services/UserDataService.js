@@ -58,9 +58,8 @@ const serviceConfig = require('../config/api-config'),
     }
 }
 /**
- * Function responsible for processing the response from account lite and filtering the accounts
- * based on Corporate actions requirements and returning the list of accounts that has to be
- * passed to events search API call
+ * Function responsible for processing the response from user service
+ * and aggregating the same with required information for UI consumption
  */
  function getProcessedResponse(response) {
 	var aggregatedUserData = {
