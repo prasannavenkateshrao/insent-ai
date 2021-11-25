@@ -1,7 +1,7 @@
 # Chatbot-server
 This app is built by P Prasanna from scratch with Nodejs Express framework.
 
-## To run the app locally in your system:
+## To run the app locally in your system you will need NodeJS version 16.13.0 and NPM 8.1.0 as lower versions below these may throw errors:
 Navigate to the project folder in your terminal:
 
 `npm install` would install all the dependencies and `npm  run dev` would start a local dev server at http://localhost:8000/. The app would automatically reload if you change any of the source files
