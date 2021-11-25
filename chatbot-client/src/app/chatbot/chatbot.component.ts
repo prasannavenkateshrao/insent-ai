@@ -23,6 +23,7 @@ export class ChatBotComponent implements OnInit{
     constructor(private chatBotAPIService: ChatBotAPIService){  
     }
     ngOnInit() {
+        //Triggers Node API for getting initial chat bot information for bot image and message to display on page
         this.chatBotAPIService.getChatBot()
         .subscribe((data:ChatBotResponse) => {
             this.response = data;
@@ -41,7 +42,10 @@ export class ChatBotComponent implements OnInit{
         this.showlauncher = true;
         this.showcard = false;
     }
-
+    /*Loads the bot onclick of bot image, establishes and authenticates websocket connection call via rxjs/websocket.
+    Post successful authentication, Node API retrieve/chat-bot/data is triggered to get initial information of the
+    field that is required to be displayed inside the bot. Based on its type, appropriate field is displayed
+    */
     displayCard() {
         this.showlauncher = false;
         this.showcard = true;
@@ -94,6 +98,10 @@ export class ChatBotComponent implements OnInit{
         $('#textLabel').html("");
         this.valueEntered = true;
     }
+    /*Function invoked after data is entered and proceed button or
+    enter key is pressed, triggers set of API's like updateTime
+    and deliver to intimate insent's backend API's via Node
+    */
     dataEntered(){
         this.chatBotAPIService.updateDeliverStatus()
         .subscribe((data:SuccessResponse) => {
