@@ -23,7 +23,8 @@
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4",
     "jquery": "~3.6.0",
-    "@types/jquery":"~3.5.9"
+    "@types/jquery":"~3.5.9",
+    "@angular-builders/custom-webpack":"~13.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.0.3",
