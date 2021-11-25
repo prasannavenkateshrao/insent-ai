@@ -10,7 +10,7 @@ const serviceConfig = require('../config/api-config'),
    function triggerVisitorAuthAPI(req, cachedUserInfo) {
         logger.debug('inside visitor auth method');
         const data = {
-            socket_id: '327074.71088521',
+            socket_id: req.query.socketId,
             channel_name: cachedUserInfo.subscriptionChannel
         };
         return new Promise(function(resolve,reject){
