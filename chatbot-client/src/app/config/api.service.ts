@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 export interface ChatBotResponse {
     channelId: string;
     sessionId: string;
-    userId: boolean;
+    userId: string;
     popupMessage: string;
     botName: string;
     botCompanyName: string;
@@ -28,8 +28,8 @@ export class ChatBotAPIService {
   getChatBot() {
     return this.http.get<ChatBotResponse>('http://localhost:8000/get/chat-bot');
   }
-  getInitialData(){
-      return this.http.get<InitialBotResponse>('http://localhost:8000/retrieve/chat-bot/data');
+  getInitialData(socket_id:string){ 
+      return this.http.get<InitialBotResponse>('http://localhost:8000/retrieve/chat-bot/data?socketId='+socket_id);
   }
   updateDeliverStatus(){
       return this.http.get<SuccessResponse>('http://localhost:8000/update/user/conversation?operation=deliver');
