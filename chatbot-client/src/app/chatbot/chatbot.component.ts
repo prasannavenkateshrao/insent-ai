@@ -10,13 +10,16 @@ export class ChatBotComponent implements OnInit{
     response:any;
     chatBotResponse: ChatBotResponse | undefined;
     conversationKey:string='';
+    conversationValue:string='';
+    conversationType:string='';
     timeSpent:number=0;
     valueEntered:boolean=false;
-    eventTypeArray=['DEBUG_PAGE_BLUR','WIDGET_SHOWN','GREETING_MESSAGE_SHOWN'];
     subscriptionChannel:string='';
+    botName:string=''
     userId:string='';
     channelId:string='';
     subject = webSocket('wss://ws-mt1.pusher.com/app/67bb469433cb732caa7a?protocol=7&client=js&version=6.0.3&flash=false');
+    firstTimeStamp:any=null;
     constructor(private chatBotAPIService: ChatBotAPIService){  
     }
     ngOnInit() {
@@ -27,6 +30,7 @@ export class ChatBotComponent implements OnInit{
             this.subscriptionChannel = data.subscriptionChannel;
             this.userId = data.userId;
             this.channelId = data.channelId;
+            this.botName = data.botName;
         });
     }
     title = 'chatbot-client';
@@ -34,7 +38,6 @@ export class ChatBotComponent implements OnInit{
     showcard:boolean = false;
 
     displayLauncher() {
-        console.log('coming inseide');
         this.showlauncher = true;
         this.showcard = false;
     }
@@ -44,10 +47,9 @@ export class ChatBotComponent implements OnInit{
         this.showcard = true;
         this.subject.subscribe(
             msg => {
-                console.log('message received: ' + JSON.stringify(msg)); // Called whenever there is a message from the server.
-                var b = JSON.parse(JSON.stringify(msg));
-                var a = b['data'];
-                var final = a 
+                var stringMsg = JSON.parse(JSON.stringify(msg));
+                var dataObj = stringMsg['data'];
+                var bodyObj = dataObj 
                 .replace(/\\'/g, "\\'")
                 .replace(/\\"/g, '\\"')
                 .replace(/\\&/g, "\\&")
@@ -55,10 +57,9 @@ export class ChatBotComponent implements OnInit{
                 .replace(/\\t/g, "\\t")
                 .replace(/\\b/g, "\\b")
                 .replace(/\\f/g, "\\f");
-                console.log(final);
-                var body = JSON.parse(final);
+                var body = JSON.parse(bodyObj);
                 var socket_id=body['socket_id'];
-                console.log('id->'+socket_id);
+                this.firstTimeStamp=Math.floor(Date.now()/1000);
                 this.chatBotAPIService.getInitialData(socket_id)
                     .subscribe((data:InitialBotResponse) => {
                         console.log(data.conversationValue);
@@ -67,6 +68,8 @@ export class ChatBotComponent implements OnInit{
                             $('#insent-input-message-input-box-body-label').html(data.conversationValue);
                             $('#textLabel').html('Enter your '+data.conversationValue);
                             this.conversationKey = data.conversationKey;
+                            this.conversationValue = data.conversationValue;
+                            this.conversationType = data.conversationType;
                             
                         this.subject.subscribe();
                             this.subject.next({
@@ -92,7 +95,6 @@ export class ChatBotComponent implements OnInit{
         this.valueEntered = true;
     }
     dataEntered(){
-        
         this.chatBotAPIService.updateDeliverStatus()
         .subscribe((data:SuccessResponse) => {
             if(data.updateStatus == 'success'){
@@ -109,36 +111,34 @@ export class ChatBotComponent implements OnInit{
                     this.subject.next({
                         event: "client-widget-message",
                         data: {
-                          senderId: "dR2tYfDLJkA4wosm21637317965752",
-                          channelName: "private-dR2tYfDLJkA4wosm216373179657521637327997415",
+                          senderId: this.userId,
+                          channelName: this.channelId,
                           message: {
-                            firstName: "prasanna",
-                            lastMessageTimeStamp: 1637791107635
+                            firstName: $('fieldName').val(),
+                            lastMessageTimeStamp: this.firstTimeStamp
                           },
                           display: {
                             img: "https://staging-uploads.insent.ai/insentrecruit/logo-insentrecruit-1636924693820?1636924693897",
-                            name: "InsentBot",
-                            lastMessageTimeStamp: 1637791107635,
+                            name: this.botName,
+                            lastMessageTimeStamp: this.firstTimeStamp,
                             lead: false,
                             time: timestamp,
-                            type: "input",
+                            type: this.conversationType,
                             userId: "bot",
                             input: {
-                              key: "firstName",
+                              key: this.conversationKey,
                               type: "plain",
-                              text: "First Name",
-                              value: "prasanna",
+                              text: this.conversationValue,
+                              value: $('#fieldName').val(),
                               disabled: true
                             },
-                            channelId: "private-dR2tYfDLJkA4wosm216373179657521637327997415"
+                            channelId: this.channelId
                           }
                         },
-                        channel: "presence-insentrecruit-widget-user-dR2tYfDLJkA4wosm21637317965752"
+                        channel: this.subscriptionChannel
                       });
-                      this.subject.subscribe();
                       this.subject.complete(); // Closes the connection.
-
-                      this.subject.error({code: 4000, reason: 'I think our app just broke!'});
+                      this.subject.error({code: 4000, reason: 'Subscription to websocket got disconnected!'});
                 });
             }
         });

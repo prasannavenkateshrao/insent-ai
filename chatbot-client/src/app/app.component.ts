@@ -11,7 +11,6 @@ export class AppComponent {
   showcard:boolean = false;
 
   displayLauncher() {
-    console.log('coming inseide');
     this.showlauncher = true;
     this.showcard = false;
   }
